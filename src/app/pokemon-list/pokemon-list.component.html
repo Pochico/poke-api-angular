@@ -1,0 +1,37 @@
+<p>Pokemon List:</p>
+
+<ul class="poke-list">
+  <li>
+    <p><strong> Pokemon Name </strong></p>
+  </li>
+  <li *ngFor="let pokemon of pokemonList">
+    <p>
+      {{ pokemon.name }}
+    </p>
+  </li>
+</ul>
+
+<ul class="pagination">
+  <!-- <li *ngFor="let page of pages"></li> -->
+  <li *ngIf="currentPage > 1">
+    <button class="prev" (click)="goToPage(currentPage-1)"><</button>
+  </li>
+  <li *ngIf="(currentPage-2) > 0">
+    <button (click)="goToPage(currentPage-2)">{{ currentPage - 2 }}</button>
+  </li>
+  <li *ngIf="(currentPage-1) > 0">
+    <button (click)="goToPage(currentPage-1)">{{ currentPage - 1 }}</button>
+  </li>
+  <li>
+    <button class="current-page">{{ currentPage }}</button>
+  </li>
+  <li *ngIf="(currentPage+1) < 90">
+    <button (click)="goToPage(currentPage+1)">{{ currentPage + 1 }}</button>
+  </li>
+  <li *ngIf="(currentPage+2) < 90">
+    <button (click)="goToPage(currentPage+2)">{{ currentPage + 2 }}</button>
+  </li>
+  <li *ngIf="currentPage < 90">
+    <button class="next" (click)="goToPage(currentPage+1)">></button>
+  </li>
+</ul>
