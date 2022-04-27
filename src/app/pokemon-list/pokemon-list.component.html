@@ -1,10 +1,19 @@
-<p>Pokemon List:</p>
+<div class="form-group">
+  <p>Search by Pokemon</p>
+  <input
+    type="text"
+    class="forms-control"
+    placeholder="Search by pokemon name"
+    [(ngModel)]="pokeFilter"
+    name="pokeFilter"
+  />
+</div>
 
 <ul class="poke-list">
   <li>
     <p><strong> Pokemon Name </strong></p>
   </li>
-  <li *ngFor="let pokemon of pokemonList">
+  <li *ngFor="let pokemon of pokemonList | filter: pokeFilter">
     <p>
       {{ pokemon.name }}
     </p>
@@ -14,24 +23,24 @@
 <ul class="pagination">
   <!-- <li *ngFor="let page of pages"></li> -->
   <li *ngIf="currentPage > 1">
-    <button class="prev" (click)="goToPage(currentPage-1)"><</button>
+    <button class="prev" (click)="goToPage(currentPage - 1)"><</button>
   </li>
-  <li *ngIf="(currentPage-2) > 0">
-    <button (click)="goToPage(currentPage-2)">{{ currentPage - 2 }}</button>
+  <li *ngIf="currentPage - 2 > 0">
+    <button (click)="goToPage(currentPage - 2)">{{ currentPage - 2 }}</button>
   </li>
-  <li *ngIf="(currentPage-1) > 0">
-    <button (click)="goToPage(currentPage-1)">{{ currentPage - 1 }}</button>
+  <li *ngIf="currentPage - 1 > 0">
+    <button (click)="goToPage(currentPage - 1)">{{ currentPage - 1 }}</button>
   </li>
   <li>
     <button class="current-page">{{ currentPage }}</button>
   </li>
-  <li *ngIf="(currentPage+1) < 90">
-    <button (click)="goToPage(currentPage+1)">{{ currentPage + 1 }}</button>
+  <li *ngIf="currentPage + 1 < 90">
+    <button (click)="goToPage(currentPage + 1)">{{ currentPage + 1 }}</button>
   </li>
-  <li *ngIf="(currentPage+2) < 90">
-    <button (click)="goToPage(currentPage+2)">{{ currentPage + 2 }}</button>
+  <li *ngIf="currentPage + 2 < 90">
+    <button (click)="goToPage(currentPage + 2)">{{ currentPage + 2 }}</button>
   </li>
   <li *ngIf="currentPage < 90">
-    <button class="next" (click)="goToPage(currentPage+1)">></button>
+    <button class="next" (click)="goToPage(currentPage + 1)">></button>
   </li>
 </ul>

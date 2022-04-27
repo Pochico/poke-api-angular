@@ -1,6 +1,4 @@
 export interface PokemonResult{
-    next: string;
-    prev: string;
     results: Pokemon[];
 }
 

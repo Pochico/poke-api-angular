@@ -12,6 +12,8 @@ export class PokemonListComponent implements OnInit {
   title = "Pokemon List";
   pokemonList: Pokemon[] = [];
   service;
+  resultsPokemon: PokemonResult = { results: this.pokemonList };
+  pokeFilter: Pokemon[] = [];
   currentPage: number = 1;
 
   constructor(pokemonListService: PokemonListService) {
@@ -20,35 +22,13 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getPokemonList(0).subscribe((data: any) => {
-      const resultsPokemon: PokemonResult = data;
-      console.log(data);
-
-      this.pokemonList = resultsPokemon.results;
-      console.log(this.currentPage)
+      this.resultsPokemon = data;
+      this.pokemonList = this.resultsPokemon.results;
     })
   }
 
-  // nextPage(offset: number) {
-  //   this.currentPage = this.currentPage + 1;
-  //   this.service.getPokemonList((this.currentPage - 1) * 10).subscribe((data: any) => {
-  //     const resultsPokemon: PokemonResult = data;
-  //     this.pokemonList = resultsPokemon.results;
-  //     console.log(this.currentPage)
-  //   })
-  // }
-
-  // prevPage(offset: number) {
-  //   if (this.currentPage > 0)
-  //     this.currentPage = this.currentPage - 1;
-  //   this.service.getPokemonList((this.currentPage - 1) * 10).subscribe((data: any) => {
-  //     const resultsPokemon: PokemonResult = data;
-  //     this.pokemonList = resultsPokemon.results;
-  //     console.log(this.currentPage)
-  //   })
-  // }
-
   goToPage(page: number) {
-      this.currentPage = page;
+    this.currentPage = page;
     this.service.getPokemonList((this.currentPage - 1) * 10).subscribe((data: any) => {
       const resultsPokemon: PokemonResult = data;
       this.pokemonList = resultsPokemon.results;

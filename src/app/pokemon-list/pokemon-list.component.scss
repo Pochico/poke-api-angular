@@ -1,3 +1,16 @@
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 1rem;
+  margin-top: 3rem;
+
+  input {
+    height: fit-content;
+    padding: 0.5rem;
+  }
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -5,7 +18,7 @@ ul {
 
   &.poke-list {
     li {
-      padding-left: 0.5rem;
+      padding-left: 1rem;
       text-transform: capitalize;
 
       &:nth-child(even) {
@@ -17,6 +30,26 @@ ul {
   &.pagination {
     display: flex;
     justify-content: center;
+
+    li button {
+      border: none;
+      color: royalblue;
+      border-radius: 4px;
+      padding: 10px 16px;
+      border: 1px solid royalblue;
+      font-weight: bold;
+      transition: 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        padding: 10px 20px;
+      }
+
+      &.current-page {
+        background-color: royalblue;
+        color: #fff;
+      }
+    }
   }
 }
 
